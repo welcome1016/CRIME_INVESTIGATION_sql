@@ -225,5 +225,33 @@ WHERE Province = 'Gauteng';
 		AND RiskLevel ='HIGH'
 
 --28. Count the number of cases per year based on CrimeDate.
+			SELECT year(CrimeDate) ,
+			COUNT(CrimeDate)
+			AS Number_Of_Cases_Per_year
+			from south_africa_criminal_info
+			Group by CrimeDate
+			Order by year(CrimeDate) ASC;
+
+			------NOW FIRST /COLOUMN IS NOT SHOWING THE YEAR,  I am bit confused in adding the year together, let's try another method
+			------------------------------------------
+																		----Here we are trying to get the number of cases per year, but we are not getting the right results, let's try another method
+														----Now the M ethod is working , I am bit confused in adding the year togeth
+			
+			
+			
+			SELECT YEAR(CrimeDate) AS Crime_Year,
+       COUNT(CrimeDate) AS Number_Of_Cases_Per_Year
+FROM south_africa_criminal_info
+GROUP BY YEAR(CrimeDate)
+ORDER BY YEAR(CrimeDate)
+
 --29. Display all suspects with a Financial Score below 500.
+				SELECT
+				*FROM south_africa_criminal_info
+				WHERE FinancialScore <=500
+
 --30. Identify the most common Crime Type in the dataset.
+			SELECT TOP 1 CrimeType, Count(CrimeType)
+			AS COMMON_CRIME
+			from south_africa_criminal_info
+			group by CrimeType
